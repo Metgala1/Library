@@ -131,7 +131,7 @@ h1 + button{
   background-color: red;
   color: white;
 }
-.book .mark:hover{
+.book .mark-btn:hover{
 background-color: lightblue;
 }
 #add-book-btn{

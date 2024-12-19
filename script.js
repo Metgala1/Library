@@ -22,6 +22,12 @@ function deleteBook(index){
     updateBookList()
 }
 
+function toggleRead(index){
+    myLibrary[index].read = !myLibrary[index].read;
+    updateBookList()
+   
+}
+
 function displayBook(){
     myLibrary.forEach((book , index) => {
         const bookCard =document.createElement("div")
@@ -34,7 +40,7 @@ function displayBook(){
          <p class="author">By: <span class="author-span">${book.author}</span></p>
          <p class="pages">Pages: <span class="pages-span">${book.pages}</span></p>
          <button class="remove-btn" data-index="${index}">Remove</button>
-         <button class="mark" data-index="${index}">${book.read ? "Mark uread" : "Mark read"}</button>
+         <button class="mark-btn" data-index="${index}">${book.read ? "Mark uread" : "Mark read"}</button>
         `
         bookContainer.appendChild(bookCard)
 
@@ -45,7 +51,15 @@ function displayBook(){
                  deleteBook(indexToRemove)
             })
         })
+       
+        const markBtn = document.querySelectorAll(".mark-btn")
+        markBtn.forEach((button) => {
+            button.addEventListener("clcik", () => {
+                const indexToRemove = parseInt(button.dataset.index);
+                toggleRead(indexToRemove)
 
+            })
+        })
 
     })
 }
