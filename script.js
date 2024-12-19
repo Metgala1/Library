@@ -10,9 +10,6 @@ function Book(title,author,pages,read){
     this.read = read;
 
 }
-addBookToLibrary("Power","Roger",250,true)
-addBookToLibrary("The Hobbit", "justine Bieber", 400, false )
-
 function addBookToLibrary(title, author, pages, read){
     const book = new Book(title, author, pages, read)
     myLibrary.push(book)
@@ -22,25 +19,52 @@ function addBookToLibrary(title, author, pages, read){
 
 
 function displayBook(){
-    myLibrary.forEach((book,index) => {
+    myLibrary.forEach((book , index) => {
         const bookCard =document.createElement("div")
         bookCard.classList.add("book");
-        if(book.read){
+        if(book.read || book.read === "on"){
             bookCard.classList.add('read');
         }
         bookCard.innerHTML = `
          <h3>${book.title}</h3>
-         <p class="author">By: ${book.author}</p>
-         <p class="pages">Pages: ${book.pages}</p>
-         <button data-index="${index}">Remove</button>
-         <button data-index="${index}">${book.read ? "Mark uread" : "Mark read"}</button>
+         <p class="author">By: <span class="author-span">${book.author}</span></p>
+         <p class="pages">Pages: <span class="pages-span">${book.pages}</span></p>
+         <button class="remove-btn" data-index="${index}">Remove</button>
+         <button class="mark" data-index="${index}">${book.read ? "Mark uread" : "Mark read"}</button>
         `
         bookContainer.appendChild(bookCard)
     })
 }
-displayBook()
 const addNewBook = document.getElementById("add-book-btn")
 const dialog = document.querySelector("dialog")
 addNewBook.addEventListener("click", () => {
    dialog.showModal()
 })
+const cancelBtn = dialog.querySelector("#cancel-btn")
+const addBtn = dialog.querySelector("#add-btn");
+
+cancelBtn.addEventListener("click", () => {
+    dialog.close()
+})
+const myForm = document.getElementById("my-form")
+    myForm.addEventListener("submit", (event) => {
+        event.preventDefault()
+        const formData = new FormData(myForm);
+        const title = formData.get("title");
+        const author = formData.get('author');
+        const pages = Number(formData.get("pages"));
+        const read = formData.get("read");
+
+        addBookToLibrary(title,author,pages,read)
+        myForm.reset()
+        dialog.close()
+        updateBookList()
+       
+    });
+
+    function updateBookList() {
+        bookContainer.innerHTML = "";
+        displayBook();
+    }
+   
+

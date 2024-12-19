@@ -20,27 +20,31 @@
   <button id="add-book-btn">Add New Book</button>
   <div id="book-container"></div>
   <dialog>
-    <form action="" method="dialog">
+    <form id="my-form" action="" method="dialog">
         <p>
             <label>
-                Title: <input type="text">
+                Title: <input required id="title" name="title" type="text">
             </label>
         </p>
         <p>
             <label>
-                Author: <input type="text">
+                Author: <input required id="author" name="author" type="text">
             </label>
         </p>
         <p>
             <label>
-                Pages: <input type="number">
+                Pages: <input required id="pages" name="pages" type="number">
             </label>
         </p>
         <p>
             <label>
-                Read: <input type="checkbox">
+                Read: <input  id="read" name="read" type="checkbox">
             </label>
         </p>
+        <div>
+            <button type="button" id="cancel-btn">Cancel</button>
+            <button id="add-btn" type="submit">Add book</button>
+        </div>
     </form>
   </dialog>
   <script src="script.js"></script>
