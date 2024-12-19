@@ -17,6 +17,7 @@
   justify-content: space-between;
   width: 80%;
   margin: 0 auto;
+  border: 0.3rem double goldenrod;
 }
 
 .book {
@@ -42,7 +43,7 @@
   margin-bottom: 5px;
   text-align: center;
   font-family: "myfont";
-  color: red;
+  color: goldenrod;
 
 }
 .book p{
