@@ -17,6 +17,10 @@ function addBookToLibrary(title, author, pages, read){
 
 }
 
+function deleteBook(index){
+    myLibrary.splice(index, 1)
+    updateBookList()
+}
 
 function displayBook(){
     myLibrary.forEach((book , index) => {
@@ -33,6 +37,16 @@ function displayBook(){
          <button class="mark" data-index="${index}">${book.read ? "Mark uread" : "Mark read"}</button>
         `
         bookContainer.appendChild(bookCard)
+
+        const removeBtn = document.querySelectorAll(".remove-btn")
+        removeBtn.forEach((button) => {
+            button.addEventListener("click", () => {
+              const indexToRemove = parseInt(button.dataset.index);
+                 deleteBook(indexToRemove)
+            })
+        })
+
+
     })
 }
 const addNewBook = document.getElementById("add-book-btn")
@@ -66,5 +80,7 @@ const myForm = document.getElementById("my-form")
         bookContainer.innerHTML = "";
         displayBook();
     }
+
+    
    
 
