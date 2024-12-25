@@ -4,11 +4,14 @@ const myLibrary = [];
      bookContainer.innerHTML = ``
 
      class Book{
-        constructor(title, author, pages, read){
+    constructor(title, author, pages, read){
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
+        }
+        say(){
+            return `${this.title} By ${this.author} has ${this.pages}`
         }
      }
 
@@ -41,6 +44,7 @@ function displayBook(){
          <h3>${book.title}</h3>
          <p class="author">By: <span class="author-span">${book.author}</span></p>
          <p class="pages">Pages: <span class="pages-span">${book.pages}</span></p>
+         <p class="description">${book.say()}</p>
          <button class="remove-btn" data-index="${index}">Remove</button>
          <button class="mark-btn" data-index="${index}">${book.read ? "Mark uread" : "Mark read"}</button>
         `
