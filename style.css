@@ -11,6 +11,10 @@
   src: url(Roboto/Roboto-Italic.ttf);
 }
 
+body{
+  background-color: black;
+}
+
 dialog::backdrop {
   background-color: rgba(0, 0, 0, 0.2); /* Darker backdrop */
 }
